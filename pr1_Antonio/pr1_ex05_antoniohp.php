@@ -12,11 +12,26 @@
                 echo "<b>2. Se repita la operación hasta que el total de valores sumados sea superior a 100. 
 </b><br><br>";
                 $total = 0;
+                $pares = 0;
+                $impares = 0;
                 do {
                         $num = rand(0, 20);
+                        if ($num % 2 == 0) {
+                                ++$pares;
+                        } else if ($num % 2 == 1) {
+                                ++$impares;
+                        }
+                        echo "| $total";
                         $total += $num;
-                        echo "| $num + $total |<br>";
+                        echo " + $num |<br>";
                 } while ($total < 100);
+                echo "<br><b>3. Muestra la suma de los valores generados.  
+</b><br><br>";
+                echo $total;
+                echo "<br><br><b>4. Muestra el total de números pares e impares generados.  
+</b><br><br>";
+                echo "Hay $pares numero pares<br>";
+                echo "Hay $impares numero pares";
                 ?>
 </body>
 
