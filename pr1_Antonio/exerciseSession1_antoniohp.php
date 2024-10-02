@@ -17,16 +17,16 @@ caso mostrar error.</b><br><br>";
                 ?>
                 <form action="" method="post">
                         <h2>Supermarket management</h2>
-                        Worker name:<input type="text" id="name" required>
+                        Worker name:<input type="text" name="name" required>
                         <h2>Choose product:</h2>
-                        <select name="products" id="products" required>
+                        <select name="products" name="products" required>
                                 <option value="soft">Soft Drink</option>
                                 <option value="milk">Milk</option>
                         </select>
                         <h2>Product quantity:</h2>
-                        <input type="number" id="number" required><br><br>
-                        <input type="submit" id="add" name="add" value="add">
-                        <input type="submit" id="remove" name="remove" value="remove">
+                        <input type="number" name="number" required><br><br>
+                        <input type="submit" name="add" value="add">
+                        <input type="submit" name="remove" value="remove">
                         <input type="reset" value="reset">
                 </form>
                 <h2>Inventory:</h2>
@@ -39,22 +39,48 @@ caso mostrar error.</b><br><br>";
                 if (isset($_POST["add"])) {
                         if (isset($_POST["name"])) {
                                 $name = $_POST["name"];
+                                $_SESSION["name"] = $name;
                         }
                         if (isset($_POST["products"])) {
-                                $product = $_SESSION["products"];
+                                $product = $_POST["products"];
+                                $_SESSION["products"] = $name;
                         }
                         if (isset($_POST["number"])) {
-                                $quantity = $_SESSION["number"];
+                                $quantity = $_POST["number"];
+                                $_SESSION["number"] = $quantity;
                         }
                         if ($product == "milk") {
-                                $_SESSION["milk"] += $milk;
+                                $_SESSION["milk"] += $quantity;
                         } elseif ($product == "soft") {
-                                $_SESSION["soft"] += $softDrink;
+                                $_SESSION["soft"] += $quantity;
                         }
                 }
-                echo "Worker: $name<br><br>";
-                echo "Units Milk: $milk<br><br>";
-                echo "Units Soft Drink: $softDrink";
+                if (isset($_POST["remove"])) {
+                        if (isset($_POST["name"])) {
+                                $name = $_POST["name"];
+                                $_SESSION["name"] = $name;
+                        }
+                        if (isset($_POST["products"])) {
+                                $product = $_POST["products"];
+                                $_SESSION["products"] = $name;
+                        }
+                        if (isset($_POST["number"])) {
+                                $quantity = $_POST["number"];
+                                $_SESSION["number"] = $quantity;
+                        }
+                        if ($product == "milk") {
+                                if ($_SESSION["milk"] > $quantity) {
+                                        $_SESSION["milk"] -= $quantity;
+                                }
+                        } elseif ($product == "soft") {
+                                if ($_SESSION["soft"] > $quantity) {
+                                        $_SESSION["soft"] -= $quantity;
+                                }
+                        }
+                }
+                echo "Worker: " . $_SESSION["name"] . "<br><br>";
+                echo "Units Milk: " . $_SESSION["milk"] . "<br><br>";
+                echo "Units Soft Drink: " . $_SESSION["soft"];
                 ?>
 </body>
 
