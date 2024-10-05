@@ -38,6 +38,16 @@ if (isset($_POST["modify"])) {
                 foreach ($_SESSION["arrayNum"] as $numero) {
                     echo "-$numero-";
                 }
+                if (isset($_POST["average"])) {
+                    $sum = array_sum($_SESSION["arrayNum"]);
+                    $cont = count($_SESSION["arrayNum"]);
+                    if ($cont > 0) {
+                        $average = $sum / $cont;
+                        echo "<br><br>Average: " . number_format($average, 2);
+                    } else {
+                        echo "<br><br>Average: Array is empty!";
+                    }
+                }
                 ?>
             </div>
         </form>

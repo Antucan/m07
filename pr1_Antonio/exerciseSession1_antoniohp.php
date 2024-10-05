@@ -35,7 +35,15 @@ caso mostrar error.</b><br><br>";
                 $name = "";
                 $milk = 0;
                 $softDrink = 0;
-
+                if (!isset($_SESSION["name"])) {
+                        $_SESSION["name"] = "";
+                }
+                if (!isset($_SESSION["milk"])) {
+                        $_SESSION["milk"] = 0;
+                }
+                if (!isset($_SESSION["soft"])) {
+                        $_SESSION["soft"] = 0;
+                }
                 if (isset($_POST["add"])) {
                         if (isset($_POST["name"])) {
                                 $name = $_POST["name"];
@@ -43,7 +51,7 @@ caso mostrar error.</b><br><br>";
                         }
                         if (isset($_POST["products"])) {
                                 $product = $_POST["products"];
-                                $_SESSION["products"] = $name;
+                                $_SESSION["products"] = $product;
                         }
                         if (isset($_POST["number"])) {
                                 $quantity = $_POST["number"];
@@ -62,7 +70,7 @@ caso mostrar error.</b><br><br>";
                         }
                         if (isset($_POST["products"])) {
                                 $product = $_POST["products"];
-                                $_SESSION["products"] = $name;
+                                $_SESSION["products"] = $product;
                         }
                         if (isset($_POST["number"])) {
                                 $quantity = $_POST["number"];
